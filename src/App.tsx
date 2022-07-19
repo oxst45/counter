@@ -1,26 +1,51 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
+
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    let [currentValue, setCurrentValue] = useState(0);
+    const onIncClick = () => {
+        // currentValue += 1;
+        setCurrentValue(currentValue += 1)
+    }
+    const onIncResetClick = () => {
+        setCurrentValue(0)
+    }
+    return (
+        <div>
+            {/*<div className="settings">*/}
+            {/*    <div className="settings__interface">*/}
+            {/*        <div className="settings__max-value">*/}
+            {/*            <span></span>*/}
+            {/*            <input type="number"/>*/}
+            {/*        </div>*/}
+            {/*        <div className="settings__start-value">*/}
+            {/*            <span></span>*/}
+            {/*            <input type="number"/>*/}
+            {/*        </div>*/}
+            {/*    </div>*/}
+            {/*    <div className="settings__set-button">*/}
+            {/*        <button>*/}
+
+            {/*        </button>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
+            <div className="inc">
+                <div className="inc__interface">
+                    <input type="number" disabled value={currentValue}/>
+                </div>
+                <div className="inc__buttons">
+                    <button className="inc__inc-but" onClick={onIncClick}>
+                        inc
+                    </button>
+                    <button className="inc__reset-but" onClick={onIncResetClick}>
+                        reset
+                    </button>
+                </div>
+            </div>
+        </div>
+    );
 }
 
 export default App;
