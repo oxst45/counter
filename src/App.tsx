@@ -1,17 +1,22 @@
-import React, {useState} from 'react';
+import React, {useReducer, useState} from 'react';
 
 import './App.css';
+import {counterReducer, incrementValueAC, resetValueAC} from "./store/counter-reducer";
 
 function App() {
 
-    let [currentValue, setCurrentValue] = useState(0);
+    let [currentValue, dispatchCurrentValue] = useReducer(counterReducer, 0)
+
     const onIncClick = () => {
-        // currentValue += 1;
-        setCurrentValue(currentValue += 1)
+        dispatchCurrentValue(incrementValueAC())
     }
     const onIncResetClick = () => {
-        setCurrentValue(0)
+        dispatchCurrentValue(resetValueAC())
     }
+    const isResetDisabled = () => {
+        return currentValue === 0;
+    }
+
     return (
         <div>
             {/*<div className="settings">*/}
@@ -39,7 +44,7 @@ function App() {
                     <button className="inc__inc-but" onClick={onIncClick}>
                         inc
                     </button>
-                    <button className="inc__reset-but" onClick={onIncResetClick}>
+                    <button className="inc__reset-but" onClick={onIncResetClick} disabled={isResetDisabled()}>
                         reset
                     </button>
                 </div>
