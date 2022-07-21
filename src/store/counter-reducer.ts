@@ -9,13 +9,18 @@ export type incrementValueAT = {
 export type resetValueAT = {
     type: typeof RESET_VALUE
 }
-export const counterReducer = (currentValue: number, action: ActionType) => {
+const initialState = {
+    currentValue: 0
+}
+export const counterReducer = (state = initialState, action: ActionType) => {
 
     switch (action.type) {
         case INC_CURRENT_VALUE:
-            return currentValue += 1;
+            return {...state, currentValue: state.currentValue + 1};
         case RESET_VALUE:
-            return currentValue = 0;
+            return {...state, currentValue: 0};
+        default:
+            return state;
     }
 }
 

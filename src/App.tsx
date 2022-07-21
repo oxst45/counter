@@ -2,19 +2,19 @@ import React, {useReducer, useState} from 'react';
 
 import './App.css';
 import {counterReducer, incrementValueAC, resetValueAC} from "./store/counter-reducer";
+import {useDispatch} from "react-redux";
 
 function App() {
 
-    let [currentValue, dispatchCurrentValue] = useReducer(counterReducer, 0)
+    let currentValue = 0;
+
+    const dispatch = useDispatch();
 
     const onIncClick = () => {
-        dispatchCurrentValue(incrementValueAC())
+        dispatch(incrementValueAC())
     }
     const onIncResetClick = () => {
-        dispatchCurrentValue(resetValueAC())
-    }
-    const isResetDisabled = () => {
-        return currentValue === 0;
+        dispatch(resetValueAC())
     }
 
     return (
@@ -44,7 +44,7 @@ function App() {
                     <button className="inc__inc-but" onClick={onIncClick}>
                         inc
                     </button>
-                    <button className="inc__reset-but" onClick={onIncResetClick} disabled={isResetDisabled()}>
+                    <button className="inc__reset-but" onClick={onIncResetClick} disabled={!currentValue}>
                         reset
                     </button>
                 </div>
