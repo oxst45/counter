@@ -1,7 +1,10 @@
 export const INC_CURRENT_VALUE = 'INC-CURRENT-VALUE'
 export const RESET_VALUE = 'RESET-VALUE'
+export const SET_MAX_VALUE = 'SET-MAX-VALUE'
+export const SET_START_VALUE = 'SET_START_VALUE'
+export const SET_COUNTER = 'SET_COUNTER'
 
-export type ActionType = incrementValueAT | resetValueAT
+export type ActionType = incrementValueAT | resetValueAT | setMaxValueAT | setStartValueAT | setCounterAT
 
 export type incrementValueAT = {
     type: typeof INC_CURRENT_VALUE
@@ -9,16 +12,40 @@ export type incrementValueAT = {
 export type resetValueAT = {
     type: typeof RESET_VALUE
 }
-const initialState = {
-    currentValue: 0
+export type setMaxValueAT = {
+    type: typeof SET_MAX_VALUE
+    maxValue: number
 }
+export type setStartValueAT = {
+    type: typeof SET_START_VALUE
+    startValue: number
+}
+// export type setCounterAT = ReturnType<typeof setCounterAC>
+export type setCounterAT = {
+    type: typeof SET_COUNTER
+    startValue: number
+    maxValue: number
+}
+
+const initialState = {
+    currentValue: 0,
+    maxValue: 0,
+    startValue: 0
+}
+export type StateType = typeof initialState
 export const counterReducer = (state = initialState, action: ActionType) => {
 
     switch (action.type) {
         case INC_CURRENT_VALUE:
-            return {...state, currentValue: state.currentValue + 1};
+            return { ...state, currentValue: state.currentValue + 1 };
         case RESET_VALUE:
-            return {...state, currentValue: 0};
+            return { ...state, currentValue: 0, maxValue: 0, startValue: 0 };
+        case SET_MAX_VALUE:
+            return { ...state, maxValue: action.maxValue };
+        case SET_START_VALUE:
+            return { ...state, startValue: action.startValue };
+        case SET_COUNTER:
+            return { ...state, maxValue: action.maxValue, startValue: action.startValue, currentValue: action.startValue }
         default:
             return state;
     }
@@ -32,6 +59,26 @@ export const incrementValueAC = (): incrementValueAT => {
 
 export const resetValueAC = (): resetValueAT => {
     return {
-        type: RESET_VALUE,
+        type: RESET_VALUE
+    }
+}
+
+export const setMaxValueAC = (maxValue: number): setMaxValueAT => {
+    return {
+        type: SET_MAX_VALUE,
+        maxValue
+    }
+}
+export const setStartValueAC = (startValue: number): setStartValueAT => {
+    return {
+        type: SET_START_VALUE,
+        startValue
+    }
+}
+export const setCounterAC = (startValue: number, maxValue: number): setCounterAT => {
+    return {
+        type: SET_COUNTER,
+        startValue,
+        maxValue
     }
 }
