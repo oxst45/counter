@@ -1,5 +1,8 @@
 import {counterReducer} from "./counter-reducer";
-import {createStore} from "redux";
+import {combineReducers, createStore} from "redux";
 
-
+export const rootReducer = combineReducers({
+    counter: counterReducer
+})
+export type RootStateType = ReturnType<typeof rootReducer>
 export const appStore = createStore(counterReducer);

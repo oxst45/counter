@@ -5,7 +5,8 @@ test('The start value should be set correctly.', () => {
     const initialState = {
         currentValue: 4,
         maxValue: 0,
-        startValue: 0
+        startValue: 0,
+        isIncDisabled: false
     }
 
     // 2. Вызов тестируемой функции:
@@ -21,7 +22,8 @@ test('The maximum value should be set correctly.', () => {
     const initialState = {
         currentValue: 4,
         maxValue: 0,
-        startValue: 0
+        startValue: 0,
+        isIncDisabled: false
     }
 
     // 2. Вызов тестируемой функции:
@@ -38,7 +40,8 @@ test('The current value should be correctly incremented.', () => {
     const initialState = {
         currentValue: 4,
         maxValue: 0,
-        startValue: 0
+        startValue: 0,
+        isIncDisabled: false
     }
 
     // 2. Вызов тестируемой функции:
@@ -54,7 +57,8 @@ test('The value should be reset.', () => {
     const initialState = {
         currentValue: 7,
         maxValue: 0,
-        startValue: 0
+        startValue: 0,
+        isIncDisabled: false
     }
 
 
