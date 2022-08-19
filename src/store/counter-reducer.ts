@@ -51,7 +51,7 @@ const initialState = {
     isSetDisabled: true
 }
 export type CounterStateType = typeof initialState
-export const counterReducer = (state = initialState, action: ActionType) => {
+export const counterReducer = (state: CounterStateType = initialState, action: ActionType) : CounterStateType => {
 
     switch (action.type) {
         case INC_CURRENT_VALUE:
