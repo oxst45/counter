@@ -6,7 +6,8 @@ test('The start value should be set correctly.', () => {
         currentValue: 4,
         maxValue: 0,
         startValue: 0,
-        isIncDisabled: false
+        isIncDisabled: false,
+        isSetDisabled: true
     }
 
     // 2. Вызов тестируемой функции:
@@ -23,7 +24,8 @@ test('The maximum value should be set correctly.', () => {
         currentValue: 4,
         maxValue: 0,
         startValue: 0,
-        isIncDisabled: false
+        isIncDisabled: false,
+        isSetDisabled: true
     }
 
     // 2. Вызов тестируемой функции:
@@ -41,7 +43,8 @@ test('The current value should be correctly incremented.', () => {
         currentValue: 4,
         maxValue: 0,
         startValue: 0,
-        isIncDisabled: false
+        isIncDisabled: false,
+        isSetDisabled: true
     }
 
     // 2. Вызов тестируемой функции:
@@ -58,7 +61,8 @@ test('The value should be reset.', () => {
         currentValue: 7,
         maxValue: 0,
         startValue: 0,
-        isIncDisabled: false
+        isIncDisabled: false,
+        isSetDisabled: true
     }
 
 

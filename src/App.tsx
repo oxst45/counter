@@ -12,13 +12,13 @@ function App() {
     return (
         <div>
             <div className="settings">
-                {SettingsPanel}
+                <SettingsPanel/>
             </div>
             <div className="inc">
 
-                {Output}
+                <Output/>
 
-                {CounterPanel}
+                <CounterPanel/>
             </div>
         </div>
     );
