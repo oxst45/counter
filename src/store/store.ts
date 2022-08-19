@@ -5,4 +5,4 @@ export const rootReducer = combineReducers({
     counter: counterReducer
 })
 export type RootStateType = ReturnType<typeof rootReducer>
-export const appStore = createStore(counterReducer);
+export const appStore = createStore(rootReducer);
