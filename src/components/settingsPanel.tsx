@@ -25,6 +25,7 @@ export function SettingsPanel() {
     const onStartValueChange = (e: ChangeEvent<HTMLInputElement>) => {
         const newStartValue = Number(e.currentTarget.value)
         dispatch(setStartValueAC(newStartValue))
+        dispatch(disableIncAC())
         dispatch(disableSetAC())
     }
     const onSetButtonClick = () => {

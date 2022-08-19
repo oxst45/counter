@@ -7,10 +7,12 @@ export function Output() {
     const counterState = useSelector<RootStateType, CounterStateType>(state => state.counter)
 
     let output;
-    if (counterState.startValue >= counterState.maxValue) {
-        output = <p>The Start value should be smaller than the max value!</p>
+    if (counterState.isIncDisabled) {
+        output = <p>Press the Set Button!</p>
     } else if (counterState.startValue < 0 || counterState.maxValue < 0) {
         output = <p>The counter works only with natural numbers!</p>
+    } else if (counterState.startValue >= counterState.maxValue) {
+        output = <p>The Start value should be smaller than the max value!</p>
     } else {
         output = <p>{counterState.currentValue}</p>
     }
