@@ -9,6 +9,7 @@ import {
     setMaxValueAC,
     setStartValueAC
 } from "../store/counter-reducer";
+import {Flex, Input, Text, Button} from '@chakra-ui/react';
 
 export function SettingsPanel() {
     const counterState = useSelector<RootStateType, CounterStateType>(state => state.counter)
@@ -32,29 +33,22 @@ export function SettingsPanel() {
         dispatch(setCounterAC(counterState.maxValue, counterState.startValue))
     }
     return (
-        <div>
-            <div className="settings__interface">
-                <div className="settings__max-value">
-                    <p>Max value</p>
+        <Flex direction="column"  rounded={8}  justifyContent="center" alignItems="center">
+                    <Text fontSize="xl">Max value</Text>
                     <input type="number" value={counterState.maxValue} onChange={onMaxValueChange}/>
 
-                </div>
-                <div className="settings__start-value">
-                    <p>Start value</p>
+                    <Text fontSize="xl">Start value</Text>
                     <input type="number" value={counterState.startValue} onChange={onStartValueChange}/>
 
-                </div>
-            </div>
-            <div className="settings__set-button">
-                <button onClick={onSetButtonClick}
+                <Button fontSize="xl" onClick={onSetButtonClick}
                         disabled={counterState.maxValue < 0
                             || counterState.startValue < 0
                             || counterState.startValue > counterState.maxValue
                             || counterState.isSetDisabled}>
                     Set counter
-                </button>
-            </div>
-        </div>
+                </Button>
+
+        </Flex>
     );
 }
 

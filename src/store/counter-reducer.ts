@@ -15,33 +15,14 @@ export type ActionType =
     disableIncAT |
     disableSetAT
 
-export type incrementValueAT = {
-    type: typeof INC_CURRENT_VALUE
-}
-export type resetValueAT = {
-    type: typeof RESET_VALUE
-}
-export type setMaxValueAT = {
-    type: typeof SET_MAX_VALUE
-    maxValue: number
-}
-export type setStartValueAT = {
-    type: typeof SET_START_VALUE
-    startValue: number
-}
-export type disableSetAT = {
-    type: typeof DISABLE_SET
-}
-// export type disableIncAT = ReturnType<typeof disableIncAC>
+
+export type incrementValueAT = ReturnType<typeof incrementValueAC>
+export type resetValueAT = ReturnType<typeof resetValueAC>
+export type setMaxValueAT = ReturnType<typeof setMaxValueAC>
+export type setStartValueAT = ReturnType<typeof setStartValueAC>
+export type disableSetAT = ReturnType<typeof disableSetAC>
+export type disableIncAT = ReturnType<typeof disableIncAC>
 export type setCounterAT = ReturnType<typeof setCounterAC>
-// export type setCounterAT = {
-//     type: typeof SET_COUNTER
-//     startValue: number
-//     maxValue: number
-// }
-export type disableIncAT = {
-    type: typeof DISABLE_INC
-}
 
 const initialState = {
     currentValue: 0,
@@ -57,7 +38,7 @@ export const counterReducer = (state: CounterStateType = initialState, action: A
         case INC_CURRENT_VALUE:
             return { ...state, currentValue: state.currentValue + 1 };
         case RESET_VALUE:
-            return { ...state, currentValue: 0};
+            return { ...state, currentValue: state.startValue};
         case SET_MAX_VALUE:
             return { ...state, maxValue: action.maxValue, isSetDisabled: false };
         case SET_START_VALUE:
@@ -73,25 +54,25 @@ export const counterReducer = (state: CounterStateType = initialState, action: A
     }
 }
 
-export const incrementValueAC = (): incrementValueAT => {
+export const incrementValueAC = () => {
     return {
         type: INC_CURRENT_VALUE,
     }
 }
 
-export const resetValueAC = (): resetValueAT => {
+export const resetValueAC = () => {
     return {
         type: RESET_VALUE
     }
 }
 
-export const setMaxValueAC = (maxValue: number): setMaxValueAT => {
+export const setMaxValueAC = (maxValue: number) => {
     return {
         type: SET_MAX_VALUE,
         maxValue
     }
 }
-export const setStartValueAC = (startValue: number): setStartValueAT => {
+export const setStartValueAC = (startValue: number) => {
     return {
         type: SET_START_VALUE,
         startValue
@@ -104,12 +85,12 @@ export const setCounterAC = (maxValue: number, startValue: number) => {
         startValue
     }
 }
-export const disableIncAC = (): disableIncAT => {
+export const disableIncAC = () => {
     return {
         type: DISABLE_INC,
     }
 }
-export const disableSetAC = (): disableSetAT => {
+export const disableSetAC = () => {
     return {
         type: DISABLE_SET,
     }

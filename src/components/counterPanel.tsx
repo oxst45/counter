@@ -2,6 +2,8 @@ import React from 'react';
 import {CounterStateType, incrementValueAC, resetValueAC} from "../store/counter-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {RootStateType} from "../store/store";
+import {Button, Flex} from "@chakra-ui/react";
+import {Output} from "./output";
 
 function CounterPanel() {
 
@@ -16,8 +18,9 @@ function CounterPanel() {
         dispatch(resetValueAC())
     }
     return (
-        <div className="inc__buttons">
-            <button className="inc__inc-but"
+        <Flex direction="column" background="gray.100" rounded={8} justifyContent="center" alignItems="center">
+            <Output/>
+            <Button fontSize="xl" className="inc__inc-but"
                     onClick={onIncClick}
                     disabled={counterState.isIncDisabled ||
                         counterState.currentValue === counterState.maxValue ||
@@ -25,12 +28,14 @@ function CounterPanel() {
                         counterState.startValue < 0 ||
                         counterState.maxValue < 0}>
                 inc
-            </button>
-            <button className="inc__reset-but" onClick={onIncResetClick}
-                    disabled={counterState.isIncDisabled || !counterState.currentValue}>
+            </Button>
+            <Button fontSize="xl" className="inc__reset-but" onClick={onIncResetClick}
+                    disabled={counterState.isIncDisabled
+                        || !counterState.currentValue
+                        || counterState.currentValue === counterState.startValue}>
                 reset
-            </button>
-        </div>
+            </Button>
+        </Flex>
     );
 }
 
